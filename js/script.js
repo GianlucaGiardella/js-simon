@@ -1,5 +1,5 @@
 //tomorrow
-const endTime = new Date("2023-04-28T09:30:00").getTime()
+const endTime = new Date("2023-04-28T10:09:00").getTime()
 
 //function
 const x = setInterval(() => {
@@ -10,18 +10,22 @@ const x = setInterval(() => {
     const difference = endTime - now;
 
     //convertion
-    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-    //add in html
-    document.querySelector(".time").innerHTML = `${days}D - ${hours}H - ${minutes}M - ${seconds}S`;
+    let days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
     //stop interval
-    if (difference < 0) {
+    if (difference <= 0) {
+        days = 0;
+        hours = 0;
+        minutes = 0;
+        seconds = 0;
         clearInterval(x);
         document.querySelector(".time").innerHTML = "Che ci fai ancora qui...vai a lezione!";
     }
+
+    //add in html
+    document.querySelector(".time").innerHTML = `${days}D - ${hours}H - ${minutes}M - ${seconds}S`;
 }, 1000);
 
