@@ -15,6 +15,9 @@ const x = setInterval(() => {
     let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
+    //add in html
+    document.querySelector(".time").innerHTML = `${days}D - ${hours}H - ${minutes}M - ${seconds}S`;
+
     //stop interval
     if (difference <= 0) {
         days = 0;
@@ -24,8 +27,5 @@ const x = setInterval(() => {
         clearInterval(x);
         document.querySelector(".time").innerHTML = "Che ci fai ancora qui...vai a lezione!";
     }
-
-    //add in html
-    document.querySelector(".time").innerHTML = `${days}D - ${hours}H - ${minutes}M - ${seconds}S`;
 }, 1000);
 
